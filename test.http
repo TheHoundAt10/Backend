@@ -1,0 +1,44 @@
+GET http://localhost:3000 HTTP/1.1
+###
+GET https://localhost:3000/api HTTP/1.1
+###
+GET https://localhost:3000/test HTTP/1.1
+###
+POST https://localhost:3000/api/bulletinpost HTTP/1.1
+content-type: application/json
+
+{
+    "department": "Education",
+    "complaint": "Students do not have stationary"
+}
+
+###
+GET https://localhost:3000/api/bulletinpost HTTP/1.1
+
+###
+DELETE https://localhost:3000/api/bulletinpost/6523edd872864417d19024f0 HTTP/1.1
+
+###
+POST https://localhost:3000/api/user/signup HTTP/1.1
+content-type: application/json
+
+{
+    "firstname": "max",
+    "surname": "homa",
+    "username": "mxhom",
+    "email": "maxh@gmail.com",
+    "password": "footjoy",
+    "cityofresidence": "Kansas City"
+}
+
+
+###
+POST https://localhost:3000/api/user/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "viktorhovland1",
+    "password": "europe"
+}
+
+
