@@ -3,6 +3,9 @@ const router = express.Router()
 const User = require ('../models/user')
 const bcrypt = require ('bcrypt')
 const jwt = require('jsonwebtoken')
+const ExpressBrute = require('express-brute');
+const store = new ExpressBrute.MemoryStore();
+const bruteforce = new ExpressBrute(store);
 
 
 router.post('/signup', async (req, res) =>
@@ -37,7 +40,7 @@ router.post('/signup', async (req, res) =>
 
 
 
-router.post('/login', async (req, res) => {
+router.post('/login', bruteforce.prevent, async (req, res) => {
     try {
       const username = req.body.username
       const password = req.body.password

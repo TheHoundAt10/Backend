@@ -1,16 +1,22 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const mongoose = require('mongoose')
 require('dotenv').config()
 const fs = require('fs')
 const cert = fs.readFileSync('keys/certificate.pem')
 const bulletinpostRoutes = require('./routes/bulletinpost')
 const authMiddleWare = require('./middleware/checkauth')
+const helmet = require('helmet');
+const morgan = require('morgan');
 const userRoutes = require('./routes/user')
 const options = {
     server:{sslCA:cert}
 }
 const constring = 'mongodb+srv://st10081889:MongoDB123@cluster0.emnf8hg.mongodb.net/?retryWrites=true&w=majority'
+app.use(cors({origin: 'http://localhost:4200', optionsSuccessStatus: 200}))
+app.use(helmet());
+app.use(morgan('tiny'));
 app.use(express.json())
 
 mongoose.connect(constring)
